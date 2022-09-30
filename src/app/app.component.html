@@ -1,0 +1,61 @@
+<nav class="navbar" style="background-color: #4965AF;">
+  <div class="container">
+    <span class="navbar-brand" style="font-weight: 700; color: white;">Buscador de Noticias</span>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 offset-1">
+      <div class="divFormulario">
+        <h2 class="tituloFormulario">FILTRA NOTICIAS POR PAIS Y CATEGORIA</h2>
+
+        <div class="col-10 offset-1">
+          <form>
+            <div class="form-group mt-3">
+              <select class="form-select" aria-label="Default select example" name="categoria" [(ngModel)]="categoriaSeleccionada">
+                <option [value]="categoria.valor" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <select class="form-select" aria-label="Default select example" name="pais"  [(ngModel)]="paisSeleccionado">
+                <option [value]="pais.valor" *ngFor="let pais of paises">{{pais.nombre}}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+
+        <div class="col-10 offset-1 mt-3">     
+          <button class="btn btnBuscar" type="button" (click)="buscarNoticias()">Buscar</button>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="d-flex justify-content-center mt-4" *ngIf="loading">
+    <div class="sk-chase">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+    </div>
+  </div>
+  <div class="row mt-3" >
+    
+    <div class="col-lg-6 divArticles"  *ngFor="let articulo of articles">
+       <img src={{articulo.media}} height="40%" width="100%" style="margin-top: 5px;">
+       <div style="height: 60%;">
+          <p><span class="badge badgeSource">{{articulo.rights}}</span></p>
+          <p class="titular">{{articulo.title}}</p>
+          <p class="noticia">{{articulo.summary}}</p>
+          <a class="btn btnBuscar" [href]="articulo.link">Ver Noticia</a></div> 
+      </div>
+  </div>    
+  
+</div>
